@@ -4,29 +4,204 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bucin Player</title>
-  <link rel="stylesheet" href="style.css"/>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+    .background-blur {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 0;
+      background: #000;
+    }
+    .background-blur img {
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      filter: blur(18px) brightness(0.7);
+    }
+    .center-content {
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+    .girl-photo-box {
+      background: rgba(255,255,255,0.5);
+      border-radius: 18px;
+      padding: 10px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .girl-photo-box img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 16px;
+      border: 3px solid #fff;
+      box-shadow: 0 2px 8px rgba(255,105,180,0.2);
+      background: #eee;
+    }
+    .lyrics-box {
+      background: rgba(255,255,255,0.9);
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+      padding: 18px 28px;
+      min-width: 280px;
+      min-height: 56px;
+      text-align: center;
+      font-size: 1.1rem;
+      color: #ce0073;
+      margin-bottom: 6px;
+      max-height: 320px;
+      overflow-y: auto;
+      line-height: 1.5;
+    }
+    .controls {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+    }
+    .controls button {
+      padding: 10px 26px;
+      border: none;
+      border-radius: 8px;
+      background: #ff66a5;
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background .2s;
+      font-weight: bold;
+      box-shadow: 0 2px 8px rgba(255,105,180,0.14);
+    }
+    .controls button:hover {
+      background: #ff3380;
+    }
+
+    .love {
+      position: fixed;
+      z-index: 3;
+      pointer-events: none;
+      font-size: 24px;
+      will-change: transform, opacity;
+      color: #ff69b4;
+      text-shadow: 0 0 10px #fff4, 0 2px 12px #ff69b4a0;
+      animation: love-fall 2.7s linear forwards;
+    }
+    @keyframes love-fall {
+      to {
+        transform: translateY(100vh) scale(1.2) rotate(18deg);
+        opacity: 0.1;
+      }
+    }
+    @media (max-width: 450px) {
+      .girl-photo-box img { width: 120px; height: 120px; }
+      .lyrics-box { min-width: 0; padding: 12px 6px; font-size: 0.95rem; }
+      .center-content { gap: 10px; }
+    }
+  </style>
 </head>
 <body>
-  <div class="background-blur" id="background-blur"></div>
-  <div class="love-container" id="love-container"></div>
-  <div class="container">
+  <!-- Background blur foto cewek -->
+  <div class="background-blur">
+    <img src="https://files.catbox.moe/sample.jpg" alt="Background Cewe"/>
+  </div>
+
+  <!-- Love-love efek jatuh -->
+  <div id="love-container"></div>
+
+  <!-- Konten tengah -->
+  <div class="center-content">
     <div class="girl-photo-box">
       <img id="girl-photo" src="https://files.catbox.moe/sample.jpg" alt="Foto Cewe"/>
-      <input type="text" id="photo-url" placeholder="Ganti Link Foto Catbox"/>
-      <button onclick="changePhoto()">Ganti Foto</button>
     </div>
     <div class="lyrics-box" id="lyrics-box">
-      <div class="lyrics" id="lyrics"></div>
+      Lima hari sudah kurindu<br>
+      Tak bisa ku menghubungimu<br>
+      Kau sedang dengan dirinya<br>
+      Sedang kita rahasia<br>
+      Kapankah kau ada waktu<br>
+      Sembunyi untuk bertemu<br>
+      Baru kau sapa kutersipu<br>
+      Kau puji lupa amarahku<br>
+      Karena kau paling tahu<br>
+      Cara lemahkan hatiku<br>
+      Walau tak ada yang pasti<br>
+      Yang kau beri hanya mimpi<br>
+      Lantas mengapa ku masih menaruh hati<br>
+      Padahal kutahu kau t'lah terikat janji<br>
+      Keliru ataukah bukan tak tahu<br>
+      Lupakanmu tapi aku tak mau<br>
+      Oh wo<br>
+      Baru kau sapa kutersipu (tersipu)<br>
+      Kau puji lupa amarahku<br>
+      Karena kau paling tahu (paling tahu)<br>
+      Cara lemahkan hatiku (hatiku)<br>
+      Walau tak ada yang pasti<br>
+      Yang kau beri hanya mimpi<br>
+      Lantas mengapa ku masih menaruh hati<br>
+      Padahal kutahu kau t'lah terikat janji<br>
+      Keliru ataukah bukan tak tahu<br>
+      Lupakanmu tapi aku tak mau<br>
+      Pantaskah aku menyimpan rasa cemburu<br>
+      Padahal bukan aku yang memilikimu<br>
+      Sanggup sampai kapankah ku tak tahu<br>
+      Akankah akal sehat menyadarkanku<br>
+      Oh wo<br>
+      Uh<br>
+      Lantas mengapa ku masih menaruh hati<br>
+      Lantas mengapa ku masih menaruh hati<br>
+      Padahal kutahu kau t'lah terikat janji<br>
+      Keliru ataukah bukan tak tahu<br>
+      Lupakanmu tapi aku tak mau (pantaskah ku)<br>
+      Pantaskah aku (ku menyimpan)<br>
+      Untuk menyimpan (rasa cemburu)<br>
+      Karna bukan aku yang milikimu<br>
+      Sanggup sampai kapankah ku tak tahu<br>
+      Akankah akal sehat menyadarkanku<br>
     </div>
-    <audio id="audio" src="lagu.mp3"></audio>
     <div class="controls">
-      <button onclick="togglePlay()" id="playpause">Play</button>
-      <input type="text" id="song-url" placeholder="Ganti Link Lagu"/>
-      <button onclick="changeSong()">Ganti Lagu</button>
+      <button onclick="playAudio()">Play</button>
+      <button onclick="pauseAudio()">Pause</button>
     </div>
+    <!-- Ganti src di bawah ini dengan direct link lagu dari Catbox -->
+    <audio id="audio" src="https://files.catbox.moe/your-song-file.mp3"></audio>
   </div>
-  <script src="lyrics.js"></script>
-  <script src="love.js"></script>
-  <script src="main.js"></script>
+
+  <script>
+    // Efek love-love pink jatuh
+    function createLove() {
+      const love = document.createElement('div');
+      love.className = 'love';
+      love.innerHTML = '💗';
+      love.style.left = Math.random() * 100 + 'vw';
+      love.style.fontSize = (20 + Math.random() * 22) + 'px';
+      love.style.opacity = 0.75 + Math.random() * 0.25;
+      document.getElementById('love-container').appendChild(love);
+      setTimeout(() => love.remove(), 2800);
+    }
+    setInterval(createLove, 320);
+
+    // Play & Pause
+    const audio = document.getElementById('audio');
+    function playAudio() {
+      audio.currentTime = 0;
+      audio.play();
+    }
+    function pauseAudio() {
+      audio.pause();
+    }
+  </script>
 </body>
 </html>
