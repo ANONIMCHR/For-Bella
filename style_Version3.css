@@ -1,0 +1,130 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+}
+
+.background-blur {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 0;
+  background: url('https://files.catbox.moe/sample.jpg') center/cover no-repeat;
+  filter: blur(16px) brightness(0.6);
+  transition: background-image 0.3s;
+}
+
+.love-container {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.container {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.girl-photo-box {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.girl-photo-box img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.3);
+}
+
+.girl-photo-box input {
+  margin-top: 12px;
+  width: 200px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.girl-photo-box button {
+  margin-left: 8px;
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  background: #e75480;
+  color: #fff;
+  cursor: pointer;
+}
+
+.lyrics-box {
+  background: rgba(255,255,255,0.78);
+  border-radius: 16px;
+  margin: 32px 0 20px 0;
+  width: 340px;
+  height: 120px;
+  overflow: hidden;
+  box-shadow: 0 2px 18px rgba(231,84,128,0.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lyrics {
+  font-size: 1.13em;
+  color: #222;
+  line-height: 2;
+  transition: transform 0.2s;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.controls button {
+  padding: 8px 16px;
+  border: none;
+  background: #e75480;
+  color: #fff;
+  border-radius: 7px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.controls input {
+  width: 140px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.love {
+  position: absolute;
+  bottom: 0;
+  font-size: 2.5em;
+  color: #e75480;
+  animation: moveLove 3s linear forwards;
+  opacity: 0.7;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+@keyframes moveLove {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-70vh) scale(1.5);
+    opacity: 0;
+  }
+}

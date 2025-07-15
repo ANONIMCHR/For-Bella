@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bucin Player</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="background-blur" id="background-blur"></div>
+  <div class="love-container" id="love-container"></div>
+  <div class="container">
+    <div class="girl-photo-box">
+      <img id="girl-photo" src="https://files.catbox.moe/sample.jpg" alt="Foto Cewe"/>
+      <input type="text" id="photo-url" placeholder="Ganti Link Foto Catbox"/>
+      <button onclick="changePhoto()">Ganti Foto</button>
+    </div>
+    <div class="lyrics-box" id="lyrics-box">
+      <div class="lyrics" id="lyrics"></div>
+    </div>
+    <audio id="audio" src="lagu.mp3"></audio>
+    <div class="controls">
+      <button onclick="togglePlay()" id="playpause">Play</button>
+      <input type="text" id="song-url" placeholder="Ganti Link Lagu"/>
+      <button onclick="changeSong()">Ganti Lagu</button>
+    </div>
+  </div>
+  <script src="lyrics.js"></script>
+  <script src="love.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
